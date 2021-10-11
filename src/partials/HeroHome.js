@@ -35,9 +35,11 @@ export default function HeroHome() {
                   </Link>
                 </div>
                 <div>
-                  <a className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4">
+                  <Link className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"  to="/"
+                    href="#0"
+                    >
                     Learn More
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
