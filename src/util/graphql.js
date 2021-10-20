@@ -22,8 +22,8 @@ export const FETCH_POSTS_QUERY = gql`
   }
 `;
 export const FETCH_RECIPES_QUERY = gql`
-  query ($tags: [String]!) {
-    getRandomRecipes(tags: $tags) {
+  query ($tag: String!, $number:Int!) {
+    getRandomRecipesOnLimit(tag: $tag, number: $number) {
       id
       title
       summary

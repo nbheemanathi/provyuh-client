@@ -11,7 +11,8 @@ export default function RecipesByType(props) {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const { loading, data } = useQuery(FETCH_RECIPES_QUERY, {
     variables: {
-      tags: [type.toLowerCase()],
+      tag: type.toLowerCase(),
+      number:12
     },
   });
   const addDefaultSrc = (ev) => {
@@ -76,7 +77,7 @@ export default function RecipesByType(props) {
                   selectedRecipe ? "grid-cols-6" : "grid-cols-12"
                 }`}
               >
-                {data?.getRandomRecipes.map((recipe) => (
+                {data?.getRandomRecipesOnLimit.map((recipe) => (
                   <div
                     onClick={() => setSelectedRecipe(recipe)}
                     key={recipe.id}
