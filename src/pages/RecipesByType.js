@@ -7,7 +7,7 @@ import { FETCH_RECIPES_QUERY } from "../util/graphql";
 export default function RecipesByType(props) {
   const type = props.match.params.type;
   const mealType = type.charAt(0).toUpperCase() + type.slice(1);
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const { loading, data } = useQuery(FETCH_RECIPES_QUERY, {
     variables: {
