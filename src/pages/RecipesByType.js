@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/auth";
+// import { AuthContext } from "../context/auth";
 import { useQuery } from "@apollo/client";
 import { FETCH_RECIPES_QUERY } from "../util/graphql";
 
