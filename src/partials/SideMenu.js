@@ -7,7 +7,6 @@ export default function SideMenu({ sidebarOpen, setSidebarOpen }) {
   const page = pathname.split("/")[1];
   const trigger = useRef(null);
   const sidebar = useRef(null);
-  console.log(page);
   useEffect(() => {
     const clickHandler = ({ target }) => {
       if (!sidebar.current || !trigger.current) return;
@@ -104,7 +103,7 @@ export default function SideMenu({ sidebarOpen, setSidebarOpen }) {
             >
               <NavLink
                 exact
-                to="/"
+                to="/dashboard"
                 className={`block text-gray-200 hover:text-white transition duration-150 ${
                   page === "dashboard" && "hover:text-gray-200"
                 }`}
@@ -131,6 +130,38 @@ export default function SideMenu({ sidebarOpen, setSidebarOpen }) {
                     />
                   </svg>
                   <span className="text-sm font-medium">Dashboard</span>
+                </div>
+              </NavLink>
+            </li>
+            {/* recipes */}
+            <li
+              className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
+                page === "recipes" && "bg-gray-900"
+              }`}
+            >
+              <NavLink
+                exact
+                to="/recipes"
+                className={`block text-gray-200 hover:text-white transition duration-150 ${
+                  page === "recipes" && "hover:text-gray-200"
+                }`}
+              >
+                <div className="flex flex-grow">
+                  <svg className="flex-shrink-0 h-6 w-6 mr-3" viewBox="0 0 24 24">
+                    <path
+                      className={`fill-current text-gray-600 ${
+                        page === "recipes" && "text-indigo-500"
+                      }`}
+                      d="M20 7a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 0120 7zM4 23a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 014 23z"
+                    />
+                    <path
+                      className={`fill-current text-gray-400 ${
+                        page === "recipes" && "text-indigo-300"
+                      }`}
+                      d="M17 23a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 010-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1zM7 13a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 112 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z"
+                    />
+                  </svg>
+                  <span className="text-sm font-medium">Recipes</span>
                 </div>
               </NavLink>
             </li>
@@ -166,38 +197,7 @@ export default function SideMenu({ sidebarOpen, setSidebarOpen }) {
                 </div>
               </NavLink>
             </li>
-            {/* recipes */}
-            <li
-              className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
-                page === "recipes" && "bg-gray-900"
-              }`}
-            >
-              <NavLink
-                exact
-                to="/"
-                className={`block text-gray-200 hover:text-white transition duration-150 ${
-                  page === "recipes" && "hover:text-gray-200"
-                }`}
-              >
-                <div className="flex flex-grow">
-                  <svg className="flex-shrink-0 h-6 w-6 mr-3" viewBox="0 0 24 24">
-                    <path
-                      className={`fill-current text-gray-600 ${
-                        page === "recipes" && "text-indigo-500"
-                      }`}
-                      d="M20 7a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 0120 7zM4 23a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 014 23z"
-                    />
-                    <path
-                      className={`fill-current text-gray-400 ${
-                        page === "recipes" && "text-indigo-300"
-                      }`}
-                      d="M17 23a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 010-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1zM7 13a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 112 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z"
-                    />
-                  </svg>
-                  <span className="text-sm font-medium">Recipes</span>
-                </div>
-              </NavLink>
-            </li>
+            
             {/* Messages */}
             <li
               className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${

@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import SinglePost from "./pages/SinglePost";
 import Dashboard from './pages/Dashboard';
+import Recipes from './pages/Recipes';
+import RecipesByType from './pages/RecipesByType';
 
 function App() {
   useEffect(() => {
@@ -26,6 +28,8 @@ function App() {
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/dashboard" component={Dashboard} />
           <AuthRoute exact path="/register" component={Register} />
+          <AuthRoute exact path="/recipes" component={Recipes}/>
+          <AuthRoute exact path="/recipes/:type" component={RecipesByType}/>
           <Route exact path="/posts/:postId" component={SinglePost} />
       </Router>
     </AuthProvider>

@@ -33,6 +33,22 @@ export const FETCH_RECIPES_QUERY = gql`
       readyInMinutes
       dishTypes
       vegetarian
+      dairyFree
+      vegan
+      healthScore
+      instructions
+      occasions
+      creditsText
+      dishTypes
+      diets
+      extendedIngredients {
+        aisle
+        id
+        amount
+        name
+        unit
+        image
+      }
     }
   }
 `;
