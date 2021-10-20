@@ -10,7 +10,7 @@ import {
 } from "@apollo/client";
 
 const httpLink = createHttpLink({
-  uri: "https://hidden-dawn-00422.herokuapp.com/",
+  uri: "https://calm-everglades-22979.herokuapp.com/",
   // uri:"http://localhost:5000"
 });
 
