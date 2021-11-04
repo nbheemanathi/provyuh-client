@@ -1,5 +1,5 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 :focus,
@@ -12,10 +12,17 @@ button:focus,
 .form-select:focus,
 .form-checkbox:focus,
 .form-radio:focus {
-    outline: none;
+  outline: none;
 }
 
-
-
-
-
+.likeButton {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

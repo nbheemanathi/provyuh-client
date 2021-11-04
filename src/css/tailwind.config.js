@@ -71,6 +71,7 @@ module.exports = {
     },
   },
   variants: {
+    margin: ['first', 'last'],
     opacity: ['disabled'],
     ringWidth: ['hover', 'active',],
 

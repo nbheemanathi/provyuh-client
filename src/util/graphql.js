@@ -22,33 +22,54 @@ export const FETCH_POSTS_QUERY = gql`
   }
 `;
 export const FETCH_RECIPES_QUERY = gql`
-  query ($tag: String!, $number:Int!) {
-    getRandomRecipesOnLimit(tag: $tag, number: $number) {
-      id
-      title
-      summary
-      image
-      imageType
-      servings
-      readyInMinutes
-      dishTypes
-      vegetarian
-      dairyFree
-      vegan
-      healthScore
-      instructions
-      occasions
-      creditsText
-      dishTypes
-      diets
-      extendedIngredients {
-        aisle
+  query ($type: String!, $number: Int!, $offset: Int!, $addRecipeNutrition: Boolean) {
+    getRandomRecipesOnLimit(
+      type: $type
+      number: $number
+      offset: $offset
+      addRecipeNutrition: $addRecipeNutrition
+    ) {
+      results {
         id
-        amount
-        name
-        unit
+        title
+        summary
         image
+        imageType
+        servings
+        readyInMinutes
+        dishTypes
+        vegetarian
+        dairyFree
+        vegan
+        healthScore
+        occasions
+        creditsText
+        dishTypes
+        diets
+        nutrition {
+          nutrients {
+            amount
+            name
+            unit
+            title
+          }
+          ingredients {
+            aisle
+            id
+            amount
+            name
+            unit
+          }
+        }
+        analyzedInstructions {
+          steps {
+            number
+            step
+          }
+        }
       }
+      totalResults
+      offset
     }
   }
 `;
@@ -165,6 +186,19 @@ export const CREATE_POST_MUTATION = gql`
         createdAt
       }
       commentCount
+    }
+  }
+`;
+export const USER_RECIPE_MUTATION = gql`
+  mutation saveUserRecipe($recipeId: Int!,$title: String!,$imageUrl: String) {
+    saveUserRecipe(recipeId: $recipeId, title:$title, imageUrl:$imageUrl) {
+      id
+      user
+      recipes {
+        recipeId
+        title
+        imageUrl
+      }      
     }
   }
 `;

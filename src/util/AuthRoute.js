@@ -20,7 +20,7 @@ function AuthRoute({ component: Component, ...rest }) {
                 <SideMenu sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
                 <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
                   <MainHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-                  <main>
+                  <main className="h-screen">
                     <Component {...props} />
                   </main>
                 </div>

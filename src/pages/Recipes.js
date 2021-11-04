@@ -1,64 +1,76 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { mainCourse, fries, soup, breakFast, dessert, salad } from "../images/icons/icon";
-
+import imageIcon from "../util/imageIcon";
 export default function Recipes() {
-  const Categories = [
+  const categories = [
     {
       name: "Breakfast",
       tags: ["breakfast", "bread"],
-      image: breakFast,
+      image: "BreakFast",
+      imageColor:"rgba(99, 102, 241, 1)",
+      _id:1
     },
     {
       name: "Appetizers",
       tags: ["appetizer", "snack"],
-      image: fries,
+      imageColor:"rgba(99, 102, 241, 1)",
+      image: "Fries",
+      _id:2
     },
     {
       name: "Main Course",
       tags: ["main course"],
-      image: mainCourse,
+      image: "MainCourse",
+      imageColor:"rgba(99, 102, 241, 1)",
+      _id:3
     },
     {
       name: "Soup",
       tags: ["soup"],
-      image: soup,
+      image: "Soup",
+      imageColor:"rgba(99, 102, 241, 1)",
+      _id:4
     },
     {
       name: "Dessert",
       tags: ["dessert"],
-      image: dessert,
+      image: "Dessert",
+      imageColor:"rgba(99, 102, 241, 1)",
+      _id:5
     },
     {
       name: "Salad",
       tags: ["salad"],
-      image: salad,
+      image: "Salad",
+      imageColor:"rgba(99, 102, 241, 1)",
+      _id:6
     },
   ];
+  
   return (
     // <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto ">
     <div className="container px-4 lg:px-8 py-6 mx-auto ">
-      <div className="flex justify-between items-center">
-        <h3 className="text-gray-500 text-lg font-semibold">Categories</h3>
-        <div className="relative inline-flex">
-          <button className=" inline-flex justify-center items-center group">
-            <div className="flex items-center truncate">
-              <span className="truncate ml-2 text-sm font-medium group-hover:text-gray-800">
-                See All
-              </span>
-              <svg className="h-4 w-4 fill-current text-gray-400" viewBox="0 0 24 24">
-                <path d="M9 5l7 7-7 7" />
-              </svg>
+      <h2 className="text-gray-800 font-bold text-xl mb-5">Popular Categories</h2>
+      <div className="grid grid-cols-12	gap-6">
+        {categories.map((category) => (
+          <div key={category._id} className="col-span-full sm:col-span-6 xl:col-span-2 shadow-lg bg-white rounded-sm border border-gray-200">
+            <div className="flex text-center py-5 flex-col h-full">
+              <div className="flex-grow mb-1">
+                <div className="inline-flex justify-center content-center items-center bg-gray-100 rounded-full w-16 h-16 mb-2">                 
+                  {imageIcon(category)}
+                </div>
+                <h3 className="text-gray-800 font-semibold text-lg mb-1">{category.name}</h3>
+              </div>
+              <div>
+                <Link
+                  to={`/recipes/${category.name}`}
+                  className="text-sm text-indigo-500 font-medium text-sm outline-none"
+                >
+                  Explore
+                </Link>
+              </div>
             </div>
-          </button>
-        </div>
-      </div>
-      <div className="invisible md:visible flex justify-evenly mt-2 space-x-3 ">
-        {Categories.map((category, index) => (
-          <Link key={index} to={`/recipes/${category.name}`} className="bg-white flex-1 p-4 rounded text-center border border-gray-200 shadow-lg hover:text-indigo-500 hover:border-indigo-500">
-            <img src={category.image} width="32" height="32" alt="Icon 01" className="mx-auto" />
-            <p className="text-base mt-2 font-semibold">{category.name}</p>
-          </Link>
+          </div>
         ))}
       </div>
     </div>
