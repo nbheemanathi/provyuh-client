@@ -9,18 +9,19 @@ const Components  = {
   Dessert:dessert,
   Salad:salad,
 }
- const ImageData = ()=> {
-    if (typeof Components[ImageData.image] !== "undefined") {
-      return React.createElement(Components[ImageData.image], {
-        key: ImageData._id,
+  const ImageData = (props) => {
+    const data = props.iconData;
+    if (typeof Components[data.image] !== "undefined") {
+      return React.createElement(Components[data.image], {
+        key: data._id,
         width:"40px",
         height:"40px",
-        fill:ImageData.imageColor
+        fill:data.imageColor
       });
     }
     return React.createElement(
       () => <div></div>,
-      { key: ImageData._id }
+      { key: data._id }
     );
   };
 
