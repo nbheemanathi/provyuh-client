@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import { useQuery, useMutation} from "@apollo/client";
@@ -30,7 +30,7 @@ export default function RecipesByType(props) {
     ev.target.src = "https://unsplash.com/photos/Z20wtGu1OH4";
   };
   
-  const [saveUserRecipe, { error }] = useMutation(USER_RECIPE_MUTATION, {
+  const [saveUserRecipe] = useMutation(USER_RECIPE_MUTATION, {
     update(proxy, result) {
       console.log(result);
     },

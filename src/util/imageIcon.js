@@ -9,7 +9,7 @@ const Components  = {
   Dessert:dessert,
   Salad:salad,
 }
-  export default ImageData => {
+  export default ImageData = () => {
     if (typeof Components[ImageData.image] !== "undefined") {
       return React.createElement(Components[ImageData.image], {
         key: ImageData._id,
