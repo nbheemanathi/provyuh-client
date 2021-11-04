@@ -1,5 +1,5 @@
 import React from 'react'
-import { mainCourse, fries, soup, breakFast, dessert, salad,calories } from "../images/icons/icon";
+import { mainCourse, fries, soup, breakFast, dessert, salad } from "../images/icons/icon";
 
 const Components  = {
   BreakFast: breakFast,
@@ -9,7 +9,7 @@ const Components  = {
   Dessert:dessert,
   Salad:salad,
 }
-  export default ImageData = () => {
+ const ImageData = ()=> {
     if (typeof Components[ImageData.image] !== "undefined") {
       return React.createElement(Components[ImageData.image], {
         key: ImageData._id,
@@ -23,3 +23,5 @@ const Components  = {
       { key: ImageData._id }
     );
   };
+
+  export default ImageData;
