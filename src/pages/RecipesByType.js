@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth";
-import { useQuery, useMutation} from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { FETCH_RECIPES_QUERY, USER_RECIPE_MUTATION } from "../util/graphql";
 import RecipeDetails from "./RecipeDetails";
 
@@ -17,6 +17,7 @@ export default function RecipesByType(props) {
       offset: 0,
       addRecipeNutrition: true,
     },
+    notifyOnNetworkStatusChange: true,
   });
 
   const renderNutrients = (nutrients, type) => {
@@ -29,7 +30,7 @@ export default function RecipesByType(props) {
   const addDefaultSrc = (ev) => {
     ev.target.src = "https://unsplash.com/photos/Z20wtGu1OH4";
   };
-  
+
   const [saveUserRecipe] = useMutation(USER_RECIPE_MUTATION, {
     update(proxy, result) {
       console.log(result);
@@ -91,7 +92,17 @@ export default function RecipesByType(props) {
             <div>
               <h2 className="text-xl mb-1 text-gray-500 font-bold">{mealType} Recipes</h2>
               {loading ? (
-                <h1>Loading ... </h1>
+                <div class="container h-96 flex justify-center items-center">
+                  <div
+                    class="
+                    animate-spin
+                    rounded-full
+                    h-32
+                    w-32
+                    border-t-2 border-b-2 border-purple-500
+                  "
+                  ></div>
+                </div>
               ) : (
                 <div>
                   <div className="text-sm text-gray-500 italic mb-4">

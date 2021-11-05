@@ -21,7 +21,7 @@ export default function HeroHome() {
                 An incredible and totally new way to Organize your meals Effortlessly.
               </p>
               <div
-                className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center"
+                className="max-w-xs mx-auto sm:flex sm:justify-evenly"
                 data-aos="zoom-y-out"
                 data-aos-delay="300"
               >

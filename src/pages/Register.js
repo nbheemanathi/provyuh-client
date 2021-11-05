@@ -18,10 +18,10 @@ export default function Register(props) {
     email: "",
   });
 
-  const [addUser] = useMutation(REGISTER_USER, {
+  const [addUser,{loading}] = useMutation(REGISTER_USER, {
     update(_, result) {
       context.login(result.data.register);
-      props.history.push("/");
+      props.history.push("/dashboard");
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.errors);
@@ -132,8 +132,12 @@ export default function Register(props) {
                   </div>
                   <div className="flex flex-wrap -mx-3 mt-6">
                     <div className="w-full px-3">
-                      <button type="submit" className="btn text-white bg-blue-600 hover:bg-blue-700 w-full">
-                        Sign up
+                      <button type="submit" disabled={loading} className="btn text-white bg-blue-600 hover:bg-blue-700 w-full">
+                      {loading ? (
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
+                        ) : (
+                          "Sign Up"
+                        )}
                       </button>
                     </div>
                   </div>

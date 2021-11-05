@@ -14,7 +14,7 @@ export default function Login(props) {
     password: "",
   });
 
-  const [login] = useMutation(LOGIN_USER, {
+  const [login,{loading}] = useMutation(LOGIN_USER, {
     update(_, result) {
       context.login(result.data.login);
       props.history.push("/dashboard");
@@ -69,7 +69,7 @@ export default function Login(props) {
                           htmlFor="password"
                         >
                           Password
-                        </label>                        
+                        </label>
                       </div>
                       <input
                         id="password"
@@ -86,11 +86,15 @@ export default function Login(props) {
 
                   <div className="flex flex-wrap -mx-3 mt-6">
                     <div className="w-full px-3">
-                      <button
+                      <button disabled={loading}
                         type="submit"
                         className="btn text-white bg-blue-600 hover:bg-blue-700 w-full"
                       >
-                        Sign in
+                        {loading ? (
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
+                        ) : (
+                          "Sign In"
+                        )}
                       </button>
                     </div>
                   </div>
