@@ -3,14 +3,13 @@ import { Card } from "antd";
 import { EllipsisOutlined, ClockCircleOutlined, EyeOutlined } from "@ant-design/icons";
 import { Icon } from "@ant-design/compatible";
 import { AuthContext } from "../../context/auth";
-import { useQuery, useMutation } from "@apollo/client";
+import {  useMutation } from "@apollo/client";
 import { FETCH_RECIPES_QUERY, USER_RECIPE_MUTATION } from "../../util/graphql";
 
 export default function RecipeCard(props) {
   const recipe = props.recipe;
   const { Meta } = Card;
   const { user } = useContext(AuthContext);
-  const [recipeId, setRecipeId] = useState(null);
   const [liked, setLiked] = useState(props.recipe.liked);
   const renderNutrients = (nutrients, type) => {
     const filteredNutrient = nutrients.find((s) => s.name === type);
@@ -20,23 +19,7 @@ export default function RecipeCard(props) {
     return "N/A";
   };
 
-  const queryVariables = () => {
-    return props.currentParentData.recipeType === "type"
-      ? {
-          type: props.currentParentData.recipeValue.toLowerCase(),
-          number: 12,
-          offset: 0,
-          addRecipeNutrition: true,
-          user: user.id,
-        }
-      : {
-          cuisine: props.currentParentData.recipeValue.toLowerCase(),
-          number: 12,
-          offset: 0,
-          addRecipeNutrition: true,
-          user: user.id,
-        };
-  };
+  
 
   const [saveUserRecipe] = useMutation(USER_RECIPE_MUTATION, {
     update(cache, result) {

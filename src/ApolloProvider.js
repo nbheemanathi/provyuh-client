@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import App from "./App";
 import { setContext } from "@apollo/client/link/context";
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
-import { persistCache,CachePersistor, LocalStorageWrapper } from "apollo3-cache-persist";
+import { persistCache, LocalStorageWrapper } from "apollo3-cache-persist";
 
 const httpLink = createHttpLink({
   uri: "https://calm-everglades-22979.herokuapp.com/",

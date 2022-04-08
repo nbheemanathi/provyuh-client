@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth";
-import { useQuery, useMutation } from "@apollo/client";
-import { FETCH_RECIPES_QUERY, USER_RECIPE_MUTATION } from "../util/graphql";
+import { useQuery } from "@apollo/client";
+import { FETCH_RECIPES_QUERY } from "../util/graphql";
 import RecipeDetails from "./RecipeDetails";
 import { Spin, Tooltip } from "antd";
 import RecipeCard from "../components/recipes/RecipeCard";
@@ -14,7 +14,7 @@ export default function RecipesByType(props) {
   const { user } = useContext(AuthContext);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [offset, setOffset] = useState(0)
-  const { loading, data, fetchMore, refetch } = useQuery(FETCH_RECIPES_QUERY, {
+  const { loading, data, fetchMore } = useQuery(FETCH_RECIPES_QUERY, {
     variables:
       recipeType === "type"
         ? {
