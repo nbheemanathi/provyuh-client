@@ -3,8 +3,12 @@ import { Card } from "antd";
 import { EllipsisOutlined, ClockCircleOutlined, EyeOutlined } from "@ant-design/icons";
 import { Icon } from "@ant-design/compatible";
 import { AuthContext } from "../../context/auth";
-import {  useMutation } from "@apollo/client";
-import { FETCH_RECIPES_QUERY, USER_RECIPE_MUTATION } from "../../util/graphql";
+import { useMutation } from "@apollo/client";
+import {
+  FETCH_RECIPES_QUERY,
+  FETCH_USER_LIKED_RECIPES,
+  USER_RECIPE_MUTATION,
+} from "../../util/graphql";
 
 export default function RecipeCard(props) {
   const recipe = props.recipe;
@@ -18,8 +22,6 @@ export default function RecipeCard(props) {
     }
     return "N/A";
   };
-
-  
 
   const [saveUserRecipe] = useMutation(USER_RECIPE_MUTATION, {
     update(cache, result) {
@@ -69,6 +71,39 @@ export default function RecipeCard(props) {
                 },
           data: { getRandomRecipesOnLimit: newData },
         });
+      }
+      const userLikedRecipes = cache.readQuery({
+        query: FETCH_USER_LIKED_RECIPES,
+        variables: {
+          userId: user.id,
+        },
+      });
+      if (userLikedRecipes) {
+        if (result.data.saveUserRecipe.status) {
+          const newRecipe = {
+            recipeId: result.data.saveUserRecipe.recipeID,
+            title: result.data.saveUserRecipe.title,
+            imageUrl: result.data.saveUserRecipe.imageUrl,
+          };
+          const updatedUserLikedRecipes = [...userLikedRecipes.getUserLikedRecipes, newRecipe];
+          cache.writeQuery({
+            query: FETCH_USER_LIKED_RECIPES,
+            variables: {
+              userId: user.id,
+            },
+            data: { getUserLikedRecipes: updatedUserLikedRecipes },
+          });
+        } else {
+          const cachedRecipes = [...userLikedRecipes.getUserLikedRecipes];
+          cachedRecipes.map((obj) => result.data.saveUserRecipe.recipeID === obj.recipeID || obj);
+          cache.writeQuery({
+            query: FETCH_USER_LIKED_RECIPES,
+            variables: {
+              userId: user.id,
+            },
+            data: { getUserLikedRecipes: cachedRecipes },
+          });
+        }
       }
     },
     onError(err) {

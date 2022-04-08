@@ -43,6 +43,9 @@ module.exports = {
       },
       margin:{
         md:'200px'
+      },
+      height:{
+        110:"445px"
       },      
       minWidth: {
         10: "2.5rem",

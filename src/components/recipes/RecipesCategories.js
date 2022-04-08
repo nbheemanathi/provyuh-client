@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function RecipesCategories() {
   const categories = ["Breakfast", "Appetizer", "Main Course", "Soup", "Dessert", "Salad"];
   return (
-    <div className="bg-white w-full lg:w-3/12 mb-6 shadow-lg rounded-lg px-4">
+    <div className="bg-white w-full lg:w-80 mb-6 shadow-lg rounded-lg px-4">
       <List
         header={<div>Popular Categories</div>}
         itemLayout="horizontal"

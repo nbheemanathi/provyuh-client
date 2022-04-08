@@ -22,14 +22,7 @@ export default function Provider() {
   const [client, setClient] = useState(undefined);
   useEffect(() => {
     const cache = new InMemoryCache({
-      typePolicies:{
-        RecipeResults:{
-          keyFields: [['offset']],          
-        },
-        Recipe:{
-          keyFields: ["id"],
-        }
-      }
+      
     });
 
     const client = new ApolloClient({

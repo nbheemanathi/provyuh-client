@@ -14,7 +14,7 @@ export default function RecipesCuisine() {
     "Japanese",
   ];
   return (
-    <div className="bg-white w-full lg:w-3/12 mb-6 shadow-lg rounded-lg px-4">
+    <div className="bg-white w-full lg:w-1/4 mb-6 shadow-lg rounded-lg px-4">
       <List
         header={<div>Popular Cuisines</div>}
         itemLayout="horizontal"

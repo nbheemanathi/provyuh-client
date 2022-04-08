@@ -14,7 +14,7 @@ export default function RecipesByType(props) {
   const { user } = useContext(AuthContext);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [offset, setOffset] = useState(0)
-  const { loading, data, fetchMore } = useQuery(FETCH_RECIPES_QUERY, {
+  const { loading, data, fetchMore, refetch } = useQuery(FETCH_RECIPES_QUERY, {
     variables:
       recipeType === "type"
         ? {
@@ -33,6 +33,7 @@ export default function RecipesByType(props) {
           },
 
     // notifyOnNetworkStatusChange: true,
+    // fetchPolicy:"no-cache"
   });
   return (
     <div>
