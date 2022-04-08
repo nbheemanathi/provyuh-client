@@ -5,8 +5,8 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@ap
 import { persistCache,CachePersistor, LocalStorageWrapper } from "apollo3-cache-persist";
 
 const httpLink = createHttpLink({
-  // uri: "https://calm-everglades-22979.herokuapp.com/",
-  uri:"http://localhost:4000"
+  uri: "https://calm-everglades-22979.herokuapp.com/",
+  // uri:"http://localhost:4000"
 });
 
 const authLink = setContext(() => {
