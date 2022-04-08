@@ -1,17 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import App from "./App";
 import { setContext } from "@apollo/client/link/context";
-
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
+import { persistCache,CachePersistor, LocalStorageWrapper } from "apollo3-cache-persist";
 
 const httpLink = createHttpLink({
-  uri: "https://calm-everglades-22979.herokuapp.com/",
-  // uri:"http://localhost:5000"
+  // uri: "https://calm-everglades-22979.herokuapp.com/",
+  uri:"http://localhost:4000"
 });
 
 const authLink = setContext(() => {
@@ -23,13 +18,38 @@ const authLink = setContext(() => {
   };
 });
 
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
+export default function Provider() {
+  const [client, setClient] = useState(undefined);
+  useEffect(() => {
+    const cache = new InMemoryCache({
+      typePolicies:{
+        RecipeResults:{
+          keyFields: [['offset']],          
+        },
+        Recipe:{
+          keyFields: ["id"],
+        }
+      }
+    });
 
-export default (
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>
-);
+    const client = new ApolloClient({
+      link: authLink.concat(httpLink),
+      cache,
+    });
+
+    persistCache({
+      cache,
+      storage: new LocalStorageWrapper(window.localStorage),
+    }).then(() => {
+      setClient(client);
+    });
+    return () => {};
+  }, []);
+  if (client === undefined) return <div>Loading...</div>;
+
+  return (
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  );
+}

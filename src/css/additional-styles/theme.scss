@@ -26,3 +26,18 @@ button:focus,
   white-space: nowrap;
   border-width: 0;
 }
+
+.ant-layout-sider-children {
+  .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+.ant-list-item-meta {
+  align-items: center;
+}

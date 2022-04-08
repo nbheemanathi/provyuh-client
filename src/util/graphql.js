@@ -22,13 +22,24 @@ export const FETCH_POSTS_QUERY = gql`
   }
 `;
 export const FETCH_RECIPES_QUERY = gql`
-  query ($type: String!, $number: Int!, $offset: Int!, $addRecipeNutrition: Boolean) {
+  query (
+    $type: String
+    $cuisine: String
+    $number: Int
+    $offset: Int
+    $addRecipeNutrition: Boolean
+    $user: String
+  ) {
     getRandomRecipesOnLimit(
-      type: $type
-      number: $number
-      offset: $offset
-      addRecipeNutrition: $addRecipeNutrition
-    ) {
+      recipeInput: {
+        type: $type
+        cuisine: $cuisine
+        number: $number
+        offset: $offset
+        addRecipeNutrition: $addRecipeNutrition
+        user: $user
+      }
+    ) @connection(key: "getRandomRecipesOnLimit", filter: ["type"]) {
       results {
         id
         title
@@ -46,6 +57,7 @@ export const FETCH_RECIPES_QUERY = gql`
         creditsText
         dishTypes
         diets
+        liked
         nutrition {
           nutrients {
             amount
@@ -82,6 +94,11 @@ export const LOGIN_USER = gql`
       username
       createdAt
       token
+      # userSavedRecipes {
+      #   recipeId
+      #   title
+      #   imageUrl
+      # }
     }
   }
 `;
@@ -190,15 +207,10 @@ export const CREATE_POST_MUTATION = gql`
   }
 `;
 export const USER_RECIPE_MUTATION = gql`
-  mutation saveUserRecipe($recipeId: Int!,$title: String!,$imageUrl: String) {
-    saveUserRecipe(recipeId: $recipeId, title:$title, imageUrl:$imageUrl) {
-      id
-      user
-      recipes {
-        recipeId
-        title
-        imageUrl
-      }      
+  mutation saveUserRecipe($liked:Boolean, $recipeId: Int!, $title: String!, $imageUrl: String) {
+    saveUserRecipe(liked:$liked, recipeId: $recipeId, title: $title, imageUrl: $imageUrl) {
+      recipeId
+      status
     }
   }
 `;

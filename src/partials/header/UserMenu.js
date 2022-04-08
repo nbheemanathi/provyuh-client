@@ -4,6 +4,7 @@ import Transition from "../../util/Transition";
 import { AuthContext } from "../../context/auth";
 import UserAvatar from "../../images/user-avatar-32.png";
 import { ApolloConsumer } from "@apollo/client";
+import { CachePersistor } from 'apollo3-cache-persist';
 
 export default function UserMenu() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -12,7 +13,13 @@ export default function UserMenu() {
   const dropdown = useRef(null);
   function onLogout(client) {
     logout();
-    client.resetStore();
+    const persistor = new CachePersistor({
+      cache: client.cache,
+      storage: window.localStorage,
+    });
+    client.clearStore().then(() =>{
+      persistor.purge()
+    });
   }
 
   // close on click outside

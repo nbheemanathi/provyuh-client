@@ -5,9 +5,11 @@
 @tailwind components;
 @import 'additional-styles/utility-patterns.scss';
 @import 'additional-styles/theme.scss';
+@import '~antd/dist/antd.css';
 
 
 @tailwind utilities;
 
 $aos-distance: 10px;
 @import '../../node_modules/aos/src/sass/aos.scss';
+

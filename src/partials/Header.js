@@ -13,7 +13,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", scrollHandler);
   }, [top]);
   const { user, logout } = useContext(AuthContext);
-  function onLogout(client){
+  function onLogout(client) {
     logout();
     client.resetStore();
   }
@@ -31,7 +31,11 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link to="/" className="btn-sm text-gray-200 bg-gray-900 hover:bg-gray-800 ml-3" onClick={() => onLogout(client)}>
+              <Link
+                to="/"
+                className="btn-sm text-gray-200 bg-gray-900 hover:bg-gray-800 ml-3"
+                onClick={() => onLogout(client)}
+              >
                 <span>Sign Out</span>
               </Link>
             </li>

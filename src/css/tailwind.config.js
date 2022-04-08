@@ -4,8 +4,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   purge: ["src/**/*.{js,jsx,ts,tsx}", "public/index.html"],
   theme: {
-    extend: {   
-       
+    extend: {          
       boxShadow: {
         xs: "0 0 0 1px rgba(0, 0, 0, 0.16)",
         sm: "0 1px 2px 0 rgba(0, 0, 0, 0.16)",
@@ -39,9 +38,12 @@ module.exports = {
         
       },
       minHeight:{
-        '20': '20rem'
+        '20': '20rem',
+        '50': '50rem'
       },
-      
+      margin:{
+        md:'200px'
+      },      
       minWidth: {
         10: "2.5rem",
         48: "12rem",

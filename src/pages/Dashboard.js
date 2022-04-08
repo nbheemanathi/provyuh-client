@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useContext, useState, useRef } from "react";
+import { AuthContext } from "../context/auth";
+import UserRecipesCard from "../partials/dashboard/UserRecipesCard";
+import { useApolloClient } from "@apollo/client";
+import { LOGIN_USER } from "../util/graphql";
 import WelcomeBanner from "../partials/dashboard/WelcomeBanner";
 
 export default function Dashboard() {
+  const { user } = useContext(AuthContext);
+  const client = useApolloClient();
+  console.log(user)
+  // const { data } = client.readQuery({
+  //   query: LOGIN_USER,     
+
+  // });
+  // console.log(data);
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-      <WelcomeBanner />     
+    <div >
+      <WelcomeBanner />
+      <div className="grid grid-cols-12 gap-6">
+        {/* <UserRecipesCard recipes={user?.userSavedRecipes}/> */}
+      </div>
     </div>
   );
 }

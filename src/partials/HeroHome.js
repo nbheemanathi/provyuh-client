@@ -7,24 +7,17 @@ export default function HeroHome() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="pt-32 pb-12 md:pt-40 md:pb-20">
           <div className="text-center pb-12 md:pb-16">
-            <h1
-              className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4"
-              data-aos="zoom-y-out"
-            >
+            <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4">
               Plan your Meal{" "}
               <p className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
                 Your Way
               </p>
             </h1>
             <div className="max-w-3xl mx-auto">
-              <p className="text-xl text-gray-600 mb-8" data-aos="zoom-y-out" data-aos-delay="150">
+              <p className="text-xl text-gray-600 mb-8">
                 An incredible and totally new way to Organize your meals Effortlessly.
               </p>
-              <div
-                className="max-w-xs mx-auto sm:flex sm:justify-evenly"
-                data-aos="zoom-y-out"
-                data-aos-delay="300"
-              >
+              <div className="max-w-xs mx-auto sm:flex sm:justify-evenly">
                 <div>
                   <Link
                     to="/register"
@@ -35,9 +28,11 @@ export default function HeroHome() {
                   </Link>
                 </div>
                 <div>
-                  <Link className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"  to="/"
+                  <Link
+                    className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
+                    to="/"
                     href="#0"
-                    >
+                  >
                     Learn More
                   </Link>
                 </div>
