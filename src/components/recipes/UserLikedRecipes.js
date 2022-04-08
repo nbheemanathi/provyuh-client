@@ -22,7 +22,7 @@ export default function UserLikedRecipes(props) {
             <HeartFilled  style={{color:'red'}}/> <p>Liked Recipes</p>
           </div>
         }
-        dataSource={data.getUserLikedRecipes}
+        dataSource={data?.getUserLikedRecipes}
         renderItem={(item) => (
           <List.Item key={item.recipeId}>
             <List.Item.Meta
