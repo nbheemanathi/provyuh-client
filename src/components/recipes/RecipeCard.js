@@ -25,53 +25,53 @@ export default function RecipeCard(props) {
 
   const [saveUserRecipe] = useMutation(USER_RECIPE_MUTATION, {
     update(cache, result) {
-      const data = cache.readQuery({
-        query: FETCH_RECIPES_QUERY,
-        variables:
-          props.currentParentData.recipeType === "type"
-            ? {
-                type: props.currentParentData.recipeValue.toLowerCase(),
-                number: 12,
-                offset: 0,
-                addRecipeNutrition: true,
-                user: user.id,
-              }
-            : {
-                cuisine: props.currentParentData.recipeValue.toLowerCase(),
-                number: 12,
-                offset: 0,
-                addRecipeNutrition: true,
-                user: user.id,
-              },
-      });
-      if (data) {
-        const newData = data.getRandomRecipesOnLimit.results.map((recipe) => {
-          if (recipe.id == result.data.saveUserRecipe.recipeId) {
-            return Object.assign({}, recipe, { liked: liked });
-          }
-          return recipe;
-        });
-        cache.writeQuery({
-          query: FETCH_RECIPES_QUERY,
-          variables:
-            props.currentParentData.recipeType === "type"
-              ? {
-                  type: props.currentParentData.recipeValue.toLowerCase(),
-                  number: 12,
-                  offset: 0,
-                  addRecipeNutrition: true,
-                  user: user.id,
-                }
-              : {
-                  cuisine: props.currentParentData.recipeValue.toLowerCase(),
-                  number: 12,
-                  offset: 0,
-                  addRecipeNutrition: true,
-                  user: user.id,
-                },
-          data: { getRandomRecipesOnLimit: newData },
-        });
-      }
+      // const data = cache.readQuery({
+      //   query: FETCH_RECIPES_QUERY,
+      //   variables:
+      //     props.currentParentData.recipeType === "type"
+      //       ? {
+      //           type: props.currentParentData.recipeValue.toLowerCase(),
+      //           number: 12,
+      //           offset: 0,
+      //           addRecipeNutrition: true,
+      //           user: user.id,
+      //         }
+      //       : {
+      //           cuisine: props.currentParentData.recipeValue.toLowerCase(),
+      //           number: 12,
+      //           offset: 0,
+      //           addRecipeNutrition: true,
+      //           user: user.id,
+      //         },
+      // });
+      // if (data) {
+      //   const newData = data.getRandomRecipesOnLimit.results.map((recipe) => {
+      //     if (recipe.id == result.data.saveUserRecipe.recipeId) {
+      //       return Object.assign({}, recipe, { liked: liked });
+      //     }
+      //     return recipe;
+      //   });
+      //   cache.writeQuery({
+      //     query: FETCH_RECIPES_QUERY,
+      //     variables:
+      //       props.currentParentData.recipeType === "type"
+      //         ? {
+      //             type: props.currentParentData.recipeValue.toLowerCase(),
+      //             number: 12,
+      //             offset: 0,
+      //             addRecipeNutrition: true,
+      //             user: user.id,
+      //           }
+      //         : {
+      //             cuisine: props.currentParentData.recipeValue.toLowerCase(),
+      //             number: 12,
+      //             offset: 0,
+      //             addRecipeNutrition: true,
+      //             user: user.id,
+      //           },
+      //     data: { getRandomRecipesOnLimit: { results: newData } },
+      //   });
+      // }
       const userLikedRecipes = cache.readQuery({
         query: FETCH_USER_LIKED_RECIPES,
         variables: {
