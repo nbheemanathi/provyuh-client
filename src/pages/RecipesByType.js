@@ -13,7 +13,7 @@ export default function RecipesByType(props) {
   const mealType = recipeValue.charAt(0).toUpperCase() + recipeValue.slice(1);
   const { user } = useContext(AuthContext);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-  const [offset, setOffset] = useState(0)
+  const [offset, setOffset] = useState(0);
   const { loading, data, fetchMore, refetch } = useQuery(FETCH_RECIPES_QUERY, {
     variables:
       recipeType === "type"
@@ -79,7 +79,7 @@ export default function RecipesByType(props) {
                             <Tooltip key={recipe.id} title={recipe.title}>
                               <RecipeCard
                                 recipe={recipe}
-                                currentParentData={{offset,recipeType,recipeValue}}
+                                currentParentData={{ offset, recipeType, recipeValue }}
                                 onView={() => setSelectedRecipe(recipe)}
                               />
                             </Tooltip>
@@ -118,7 +118,7 @@ export default function RecipesByType(props) {
                           <li className="ml-3 first:ml-0">
                             <button
                               onClick={() => {
-                                setOffset(data.getRandomRecipesOnLimit.offset + 8)
+                                setOffset(data.getRandomRecipesOnLimit.offset + 8);
                                 fetchMore({
                                   variables: {
                                     offset: data.getRandomRecipesOnLimit.offset + 8,

@@ -126,7 +126,7 @@ export default function RecipeCard(props) {
   return (
     <Card
       hoverable
-      cover={<img alt="example" src={recipe.image} />}
+      cover={<img style={{height:'180px'}} alt="example" src={recipe.image} />}
       actions={[
         <Icon
           type="heart"

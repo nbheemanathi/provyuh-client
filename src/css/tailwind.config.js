@@ -79,7 +79,7 @@ module.exports = {
     margin: ['first', 'last'],
     opacity: ['disabled'],
     ringWidth: ['hover', 'active',],
-
+    borderWidth:['last']
   },
   plugins: [
     require('@tailwindcss/line-clamp'),

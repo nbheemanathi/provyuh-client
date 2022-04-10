@@ -220,3 +220,47 @@ export const FETCH_USER_LIKED_RECIPES = gql`
     }
   }
 `;
+export const FETCH_RECIPE_INFO = gql`
+  query ($id: Int!) {
+    getRecipeInformation(id: $id) {
+      id
+      title
+      summary
+      image
+      imageType
+      servings
+      readyInMinutes
+      dishTypes
+      vegetarian
+      dairyFree
+      vegan
+      healthScore
+      occasions
+      creditsText
+      dishTypes
+      diets
+      liked
+      nutrition {
+        nutrients {
+          amount
+          name
+          unit
+          title
+        }
+        ingredients {
+          aisle
+          id
+          amount
+          name
+          unit
+        }
+      }
+      analyzedInstructions {
+        steps {
+          number
+          step
+        }
+      }
+    }
+  }
+`;
