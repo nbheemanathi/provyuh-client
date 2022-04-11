@@ -6,18 +6,18 @@ export default function HeroHome() {
     <section className="relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="pt-32 pb-12 md:pt-40 md:pb-20">
-          <div className="text-center pb-12 md:pb-16">
-            <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4">
-              Plan your Meal{" "}
+          <div className="pb-12 md:pb-16">
+            <h1 className="banner-header text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4">
+              Plan your <span></span>
               <p className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
                 Your Way
               </p>
             </h1>
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-3xl ">
               <p className="text-xl text-gray-600 mb-8">
-                An incredible and totally new way to Organize your meals Effortlessly.
+                An incredible and totally new way to Organize your life Effortlessly.
               </p>
-              <div className="max-w-xs mx-auto sm:flex sm:justify-evenly">
+              <div className="max-w-xs sm:flex sm:justify-evenly">
                 <div>
                   <Link
                     to="/register"
