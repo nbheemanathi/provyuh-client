@@ -13,7 +13,7 @@ export default function UserLikedRecipes(props) {
   });
 
   return (
-    <div className="bg-white w-full flex-1 mb-6 h-110 overflow-auto shadow-lg rounded-lg px-4">
+    <div className="col-span-full xl:col-span-6 h-110 overflow-auto bg-white shadow-lg rounded-sm border border-gray-200  px-5">
       {!loading && (
         <List
           header={
@@ -26,9 +26,13 @@ export default function UserLikedRecipes(props) {
             <List.Item key={item.recipeId}>
               <List.Item.Meta
                 avatar={<Avatar src={item.imageUrl} />}
-                title={<button onClick={() => props.selectedRecipeId(item.recipeId)}> {item.title}</button>}
+                title={
+                  <button onClick={() => props.selectedRecipeId(item.recipeId)}>
+                    {item.title}
+                  </button>
+                }
               />
-              <div>Actions</div>
+              <div className="hidden lg:block">Actions</div>
             </List.Item>
           )}
         />

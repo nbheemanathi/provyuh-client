@@ -12,13 +12,13 @@ export default function Recipes() {
   return (
     <div>
       {!selectedRecipe ? (
-        <div className="flex flex-wrap space-x-3">
-          <RecipesCategories />
+            <div className="grid grid-cols-12 gap-6">
+            <RecipesCategories />
           <RecipesCuisine />
-          <UserLikedRecipes
+           <UserLikedRecipes
             user={user}
             selectedRecipeId={(recipeId) => setSelectedRecipe(recipeId)}
-          />
+          /> 
         </div>
       ) : (
         <RecipeInformation recipeId={selectedRecipe} onCancel={() => setSelectedRecipe(null) }/>
