@@ -87,10 +87,16 @@
   0% {
     content: "Meals";
   }
-  30% {
+  20% {
     content: "Workouts";
   }
+  40% {
+    content: "To-Do's";
+  }
   60% {
-    content: "To-Do\'s";
+    content: "Tasks";
+  }
+  80% {
+    content: "Events";
   }
 }

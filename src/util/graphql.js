@@ -29,6 +29,7 @@ export const FETCH_RECIPES_QUERY = gql`
     $offset: Int
     $addRecipeNutrition: Boolean
     $user: String
+    $query:String
   ) {
     getRandomRecipesOnLimit(
       recipeInput: {
@@ -38,6 +39,7 @@ export const FETCH_RECIPES_QUERY = gql`
         offset: $offset
         addRecipeNutrition: $addRecipeNutrition
         user: $user
+        query:$query
       }
     ) {
       results {
