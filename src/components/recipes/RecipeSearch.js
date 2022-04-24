@@ -19,7 +19,7 @@ export default function RecipeSearch(props) {
     },
 
     // notifyOnNetworkStatusChange: true,
-    fetchPolicy:"no-cache"
+    // fetchPolicy:"no-cache"
   });
   return (
     <div>
@@ -47,7 +47,7 @@ export default function RecipeSearch(props) {
                         className="hover:shadow-2xl  col-span-full sm:col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-2 shadow-lg bg-white border border-gray-200 rounded-sm overflow-hidden"
                       >
                         <Tooltip key={recipe.id} title={recipe.title}>
-                          <RecipeCard recipe={recipe} onView={() => setSelectedRecipe(recipe)} />
+                          <RecipeCard infoType='search' recipe={recipe} onView={() => setSelectedRecipe(recipe)} />
                         </Tooltip>
                       </div>
                     ))}

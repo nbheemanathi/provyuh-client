@@ -5,26 +5,25 @@ import { IoTimerOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import { MdOutlineNoFood } from "react-icons/md";
 import { Button } from "antd";
+import { Link, useHistory } from "react-router-dom";
 
 export default function RecipeInformation(props) {
-  const recipeId = props.recipeId;
+  const history = useHistory();
+  const recipeId = props.match.params.id;
   const [showNutrients, setShowNutrients] = useState(false);
   const { loading, data } = useQuery(FETCH_RECIPE_INFO, {
     variables: {
-      id: recipeId,
+      id: parseInt(recipeId),
     },
   });
-  if (!loading) {
-    console.log(data);
-  }
   return (
     <div className="">
       <div className="border-b-2 border-gray-200 pb-1">
         <button
-          onClick={() => props.onCancel()}
+          onClick={() => history.goBack()}
           className="text-indigo-500 whitespace-nowrap outline-none text-sm font-medium"
         >
-          ← Back to Recipes
+          ← Go Back
         </button>
       </div>
       {!loading && (
@@ -90,7 +89,7 @@ export default function RecipeInformation(props) {
                 <div className="pt-4">
                   {!showNutrients ? (
                     <Button shape="round" type="primary" onClick={() => setShowNutrients(true)}>
-                      Show Nutrients ..{" "}
+                      Show Nutrients ..
                     </Button>
                   ) : (
                     <div>
@@ -108,7 +107,7 @@ export default function RecipeInformation(props) {
                         </div>
                       ))}
                       <Button shape="round" type="primary" onClick={() => setShowNutrients(false)}>
-                        Hide Nutrients ..{" "}
+                        Hide Nutrients ..
                       </Button>
                     </div>
                   )}
@@ -145,7 +144,7 @@ export default function RecipeInformation(props) {
                   <div className="pt-4">
                     {!showNutrients ? (
                       <Button shape="round" type="primary" onClick={() => setShowNutrients(true)}>
-                        Show Nutrients ..{" "}
+                        Show Nutrients ..
                       </Button>
                     ) : (
                       <div>
@@ -167,7 +166,7 @@ export default function RecipeInformation(props) {
                           type="primary"
                           onClick={() => setShowNutrients(false)}
                         >
-                          Hide Nutrients ..{" "}
+                          Hide Nutrients ..
                         </Button>
                       </div>
                     )}
@@ -177,15 +176,19 @@ export default function RecipeInformation(props) {
               <div className="mt-3">
                 <h2 className="font-bold text-xl mb-2 text-gray-800">Instructions</h2>
                 <ul className="list-decimal list-outside mb-6">
-                  {data.getRecipeInformation.analyzedInstructions[0].steps.map((step) => (
-                    // <li key={step.number}>{step.step}</li>
-                    <div key={step.number}>
-                      <h5 className="mt-4 mb-2 text-lg font-bold text-gray-600">
-                        Step {step.number}
-                      </h5>
-                      <p className="text-base" dangerouslySetInnerHTML={{ __html: step.step }}></p>{" "}
-                    </div>
-                  ))}
+                  {data.getRecipeInformation.analyzedInstructions.length > 0 &&
+                    data.getRecipeInformation.analyzedInstructions[0].steps.map((step) => (
+                      // <li key={step.number}>{step.step}</li>
+                      <div key={step.number}>
+                        <h5 className="mt-4 mb-2 text-lg font-bold text-gray-600">
+                          Step {step.number}
+                        </h5>
+                        <p
+                          className="text-base"
+                          dangerouslySetInnerHTML={{ __html: step.step }}
+                        ></p>{" "}
+                      </div>
+                    ))}
                 </ul>
               </div>
             </div>

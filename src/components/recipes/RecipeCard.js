@@ -9,8 +9,10 @@ import {
   FETCH_USER_LIKED_RECIPES,
   USER_RECIPE_MUTATION,
 } from "../../util/graphql";
+import { useHistory } from "react-router-dom";
 
 export default function RecipeCard(props) {
+  const history = useHistory();
   const recipe = props.recipe;
   const { Meta } = Card;
   const { user } = useContext(AuthContext);
@@ -122,11 +124,20 @@ export default function RecipeCard(props) {
       },
     });
   };
+  const onRecipeView = () => {
+    if (props.infoType !== null && props.infoType === "search") {
+      props.onView();
+    } else {
+      history.push(`/recipes/${recipe.id}`);
+    }
+  };
 
   return (
     <Card
       hoverable
-      cover={<img style={{height:'140px' ,objectFit:'cover'}} alt="example" src={recipe.image} />}
+      cover={
+        <img style={{ height: "140px", objectFit: "cover" }} alt="example" src={recipe.image} />
+      }
       actions={[
         <Icon
           type="heart"
@@ -137,7 +148,7 @@ export default function RecipeCard(props) {
             updateRecipeLikeStatus(!liked);
           }}
         />,
-        <EyeOutlined key="view" onClick={() => props.onView()} />,
+        <EyeOutlined key="view" onClick={() => onRecipeView()} />,
         <EllipsisOutlined key="ellipsis" />,
       ]}
     >

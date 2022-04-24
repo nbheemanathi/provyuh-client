@@ -45,7 +45,8 @@ module.exports = {
         md:'200px'
       },
       height:{
-        110:"445px"
+        110:"445px",
+        'calender':"820px"
       },      
       minWidth: {
         10: "2.5rem",

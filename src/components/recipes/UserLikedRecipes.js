@@ -1,10 +1,12 @@
 import React from "react";
 import { List, Avatar, Button } from "antd";
+import { useHistory } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { FETCH_USER_LIKED_RECIPES, USER_RECIPE_MUTATION } from "../../util/graphql";
 import { HeartFilled, DeleteOutlined } from "@ant-design/icons";
 
 export default function UserLikedRecipes(props) {
+  const history = useHistory();
   const user = props.user;
   const { loading, data } = useQuery(FETCH_USER_LIKED_RECIPES, {
     variables: {
@@ -23,7 +25,9 @@ export default function UserLikedRecipes(props) {
         //we are only deleting from cache here.
         // const cachedRecipes = [...userLikedRecipes.getUserLikedRecipes];
         // cachedRecipes.map((obj) => result.data.saveUserRecipe.recipeID === obj.recipeID || obj);
-        const cachedData = data.getUserLikedRecipes.filter((s) => s.recipeId !== result.data.saveUserRecipe.recipeId);
+        const cachedData = data.getUserLikedRecipes.filter(
+          (s) => s.recipeId !== result.data.saveUserRecipe.recipeId
+        );
         cache.writeQuery({
           query: FETCH_USER_LIKED_RECIPES,
           variables: {
@@ -46,6 +50,10 @@ export default function UserLikedRecipes(props) {
     });
   };
 
+  const onRecipeView = (recipeId) => {
+    history.push(`/recipes/${recipeId}`)
+    // props.selectedRecipeId(item.recipeId)
+  }
   return (
     <div className="col-span-full xl:col-span-6 h-110 overflow-auto bg-white shadow-lg rounded-sm border border-gray-200  px-5">
       {!loading && (
@@ -62,7 +70,7 @@ export default function UserLikedRecipes(props) {
               <List.Item.Meta
                 avatar={<Avatar src={item.imageUrl} />}
                 title={
-                  <button onClick={() => props.selectedRecipeId(item.recipeId)}>
+                  <button onClick={() => onRecipeView(item.recipeId)}>
                     {item.title}
                   </button>
                 }

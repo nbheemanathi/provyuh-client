@@ -5,11 +5,7 @@ import "./css/styles.scss";
 import AppRouter from "./util/AppRouter";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <AppRouter />
-    </BrowserRouter>
-  );
+  return <AppRouter />  
 }
 
 export default App;
