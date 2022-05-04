@@ -120,3 +120,18 @@
 .notes-month section {
   font-size: 28px;
 }
+
+.ant-message-notice-content .ant-message-custom-content{
+  display: flex;
+  align-items: center;
+}
+.rbc-event-label {
+  display: none;
+}
+
+.notification_message {
+  position: absolute;
+  top: 80px;
+  right: 30px;
+  padding: 10px;
+}

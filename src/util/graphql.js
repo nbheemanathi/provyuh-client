@@ -29,7 +29,7 @@ export const FETCH_RECIPES_QUERY = gql`
     $offset: Int
     $addRecipeNutrition: Boolean
     $user: String
-    $query:String
+    $query: String
   ) {
     getRandomRecipesOnLimit(
       recipeInput: {
@@ -39,7 +39,7 @@ export const FETCH_RECIPES_QUERY = gql`
         offset: $offset
         addRecipeNutrition: $addRecipeNutrition
         user: $user
-        query:$query
+        query: $query
       }
     ) {
       results {
@@ -263,6 +263,62 @@ export const FETCH_RECIPE_INFO = gql`
           step
         }
       }
+    }
+  }
+`;
+
+export const ADD_EVENT_MUTATION = gql`
+  mutation addEvent(
+    $title: String!
+    $allDay: Boolean!
+    $start: String!
+    $end: String!
+    $type: String!
+    $notes: String
+    $links: [LinkInfo]
+  ) {
+    addEvent(
+      eventInput: {
+        title: $title
+        allDay: $allDay
+        start: $start
+        end: $end
+        type: $type
+        notes: $notes
+        links: $links
+      }
+    ) {
+      id
+      title
+      allDay
+      start
+      links {
+        linkId
+        title
+        imageUrl
+      }
+      end
+      notes
+      user
+    }
+  }
+`;
+
+export const FETCH_USER_EVENTS = gql`
+  {
+    getUserEvents {
+      id
+      title
+      allDay
+      start
+      links {
+        linkId
+        title
+        imageUrl
+      }
+      end
+      notes
+      user
     }
   }
 `;
